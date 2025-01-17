@@ -1,0 +1,62 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Control Panel</title>
+    <link rel="stylesheet" href="/css/admin.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Kill Switch</h1>
+            <div id="lastChecked"></div>
+        </div>
+
+        <div class="auth-section">
+            <input type="password" id="authToken" class="auth-input" placeholder="Enter GitHub token">
+        </div>
+
+        <div class="status">
+            <div>Current Status:</div>
+            <div id="statusIndicator" class="status-indicator status-inactive">Checking...</div>
+        </div>
+
+        <button id="toggleButton" class="button button-activate">Activate Kill Switch</button>
+
+        <div id="log" class="log"></div>
+    </div>
+
+    <div class="hash-tool">
+        <h1>Hash Tool</h1>
+
+        <div class="input-group">
+            <input type="text" id="hashInput" placeholder="Input Password">
+        </div>
+
+        <button id="generateHashButton" onclick="generateHash()">Generate Hash</button>
+
+        <div class="output-group">
+            <label>SHA-256 Hash:</label>
+            <div id="hashOutput" class="hash-output"></div>
+        </div>
+
+        <div class="hash-uploader">
+            <h2>Password Hash Uploader</h2>
+            <div class="input-group">
+                <input type="text" id="uploadHashInput" placeholder="Enter hash to upload">
+            </div>
+            <button id="uploadHashButton" class="button">Upload Hash</button>
+            <div id="uploadStatus" class="status-message"></div>
+        </div>
+    </div>
+
+    <script src="js/crypto-js.min.js"></script>
+    <script src="js/hash-tool.js"></script>
+    <script src="js/adminterminal.js"></script>
+</body>
+
+</html>

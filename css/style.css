@@ -1,0 +1,290 @@
+/* style.css */
+:root {
+  --turquoise: #40e0d0;
+  --turquoise-dark: #30c0b0;
+  --background: #0a0a0a;
+  --surface: #1a1a1a;
+  --surface-hover: #252525;
+  --error: #ff4444;
+  --text-primary: #ffffff;
+  --text-secondary: #a0a0a0;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  transition: all 0.2s ease-in-out;
+}
+
+body {
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  background-color: var(--background);
+  color: var(--text-primary);
+  min-height: 100vh;
+  position: relative;
+  line-height: 1.6;
+}
+
+#particleCanvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  opacity: 0.6;
+}
+
+.container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.login-box{
+  max-width: 800px;
+  margin: 2rem auto 0;
+  background: #1e293b;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.3), 0 2px 4px -2px rgb(0 0 0 / 0.3);
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.header svg {
+  margin-bottom: 1.5rem;
+  filter: drop-shadow(0 0 8px rgba(64, 224, 208, 0.3));
+}
+
+h1 {
+  color: var(--turquoise);
+  font-size: 2.5rem;
+  margin-bottom: 0.75rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+h2 {
+  color: var(--text-secondary);
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+input {
+  width: 100%;
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.25rem;
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.75rem;
+  color: var(--text-primary);
+  outline: none;
+  font-size: 1rem;
+}
+
+input:focus {
+  border-color: var(--turquoise);
+  box-shadow: 0 0 0 3px rgba(64, 224, 208, 0.15);
+}
+
+button {
+  width: 100%;
+  padding: 1rem;
+  background-color: var(--turquoise);
+  color: var(--background);
+  border: none;
+  border-radius: 0.75rem;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1rem;
+  transform: translateY(0);
+  box-shadow: 0 4px 12px rgba(64, 224, 208, 0.2);
+}
+
+button:hover {
+  background-color: var(--turquoise-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(64, 224, 208, 0.3);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+.error {
+  color: var(--error);
+  margin-bottom: 1rem;
+  text-align: center;
+  min-height: 1.5rem;
+  font-weight: 500;
+}
+
+/* Terminal Page Styles */
+.terminal-container {
+  padding: 2rem;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+.game-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 1.8rem;
+  padding: 1.5rem;
+}
+
+.game-card {
+  background-color: var(--surface);
+  border-radius: 1rem;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 2px solid transparent;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.game-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  border-color: var(--turquoise);
+  box-shadow: 0 8px 30px rgba(64, 224, 208, 0.2);
+}
+
+.game-card img {
+  width: 100%;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.game-card h3 {
+  padding: 0.25rem;
+  text-align: center;
+  color: var(--turquoise);
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+/* Search Bar Styles */
+#search-container {
+  margin: 2rem auto;
+  max-width: 600px;
+  width: 100%;
+}
+
+#search-input {
+  width: 100%;
+  height: 60px;
+  border-radius: 1rem;
+  background-color: var(--surface);
+  font-size: 1.1rem;
+  padding: 0 1.5rem;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+#search-input:focus {
+  border-color: var(--turquoise);
+  box-shadow: 0 0 0 4px rgba(64, 224, 208, 0.15);
+}
+
+#search-input::placeholder {
+  color: var(--text-secondary);
+}
+
+/* Game Page Styles */
+.game-container {
+  width: 80%;
+  max-width: 1400px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--surface);
+  border-radius: 1.5rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  padding: 0;
+  border: 1px solid rgba(64, 224, 208, 0.1);
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.game-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--turquoise);
+  margin: 1rem auto;
+  text-align: center;
+}
+
+.game-content {
+  aspect-ratio: 16/9;
+  width: 98%;
+  bottom: 0;
+  left: 1%;
+  transform: translateX(1%);
+  background-color: var(--background);
+  border-radius: 1rem 1rem 0 0;
+  overflow: hidden;
+  flex-grow: 1;
+}
+
+.game-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem;
+  background-color: var(--surface);
+  border-radius: inherit;
+  border-bottom: inherit;
+  border-color: inherit;
+}
+
+.fullscreen-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  border-radius: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: none;
+  box-sizing: border-box;
+  box-shadow: none;
+}
+
+.fullscreen-btn svg {
+  width: 24px;
+  height: 24px;
+  fill: var(--turquoise);
+  transition: none;
+}
+
+.fullscreen-btn:hover {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  border-radius: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: none;
+  box-sizing: border-box;
+  box-shadow: none;
+}
+
+.fullscreen-btn:hover svg {
+  transform: scale(1.2);
+}

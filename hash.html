@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Velvet - Hash Page</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <canvas id="particleCanvas"></canvas>
+
+    <div class="container">
+        <div class="hash-tool">
+            <h1>Velvet Hash Tool</h1>
+
+            <div class="input-group">
+                <label>Input Text:</label>
+                <input type="text" id="hashInput">
+            </div>
+
+            <button onclick="generateHash()">Generate Hash</button>
+
+            <div class="output-group">
+                <label>SHA-256 Hash:</label>
+                <div id="hashOutput" class="hash-output"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/crypto-js.min.js"></script>
+    <script src="js/particles.js"></script>
+    <script src="js/hash-tool.js"></script>
+    <!-- Google tag (gtag.js) -->
+    <script src="/js/ganalytics.js"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BS965W8BWP"></script>
+    <script src="https://www.googletagmanager.com/gtag/js?id=G-BS965W8BWP" async></script>
+    <script src="../../js/admin.js"></script>
+</body>
+
+</html>
