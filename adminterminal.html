@@ -7,6 +7,258 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>System Control Panel</title>
     <link rel="stylesheet" href="/css/admin.css">
+    <style>
+        
+:root {
+  --primary-color: #60a5fa;
+  --danger-color: #ef4444;
+  --success-color: #22c55e;
+  --bg-color: #0f172a;
+  --card-bg: #1e293b;
+  --text-primary: #e2e8f0;
+  --text-secondary: #94a3b8;
+  --border-color: #334155;
+  --input-bg: #0f172a;
+  --hover-color: #2563eb;
+}
+
+body {
+  font-family: system-ui, -apple-system, sans-serif;
+  background-color: var(--bg-color);
+  margin: 0;
+  padding: 2rem;
+  line-height: 1.5;
+  color: var(--text-primary);
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  background: var(--card-bg);
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.3), 0 2px 4px -2px rgb(0 0 0 / 0.3);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.header h1 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+#lastChecked {
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+}
+
+.auth-section {
+  margin-bottom: 2rem;
+}
+
+.auth-input {
+  width: calc(100% - 2rem);
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  transition: all 0.2s;
+  background-color: var(--input-bg);
+  color: var(--text-primary);
+}
+
+.auth-input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.1);
+}
+
+.status {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background: var(--input-bg);
+  border-radius: 0.5rem;
+}
+
+.status-indicator {
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  font-weight: 500;
+  font-size: 0.875rem;
+}
+
+.status-active {
+  background-color: rgba(239, 68, 68, 0.2);
+  color: #fca5a5;
+}
+
+.status-inactive {
+  background-color: rgba(34, 197, 94, 0.2);
+  color: #86efac;
+}
+
+.button {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.button-activate {
+  background-color: var(--danger-color);
+  color: white;
+}
+
+.button-deactivate {
+  background-color: var(--success-color);
+  color: white;
+}
+
+.button:hover {
+  transform: translateY(-1px);
+  filter: brightness(110%);
+}
+
+.button:active {
+  transform: translateY(0);
+}
+
+.button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.log {
+  margin-top: 2rem;
+  padding: 1rem;
+  background: var(--input-bg);
+  border-radius: 0.5rem;
+  font-family: ui-monospace, monospace;
+  font-size: 0.875rem;
+  color: var(--text-primary);
+}
+
+.hash-tool {
+  max-width: 800px;
+  margin: 2rem auto 0;
+  background: var(--card-bg);
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.3), 0 2px 4px -2px rgb(0 0 0 / 0.3);
+}
+
+.hash-tool h1, .hash-tool h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 1.5rem;
+}
+
+.hash-tool h2 {
+  font-size: 1.25rem;
+  margin-top: 2rem;
+}
+
+.input-group {
+  margin-bottom: 1.5rem;
+}
+
+#hashInput, #uploadHashInput {
+  width: calc(100% - 2rem);
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  transition: all 0.2s;
+  background-color: var(--input-bg);
+  color: var(--text-primary);
+}
+
+#hashInput:focus, #uploadHashInput:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.1);
+}
+
+.hash-tool button {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.hash-tool button:hover {
+  background-color: var(--hover-color);
+  transform: translateY(-1px);
+}
+
+.output-group {
+  margin-top: 1.5rem;
+}
+
+.output-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+}
+
+.hash-output {
+  padding: 1rem;
+  background: var(--input-bg);
+  border-radius: 0.5rem;
+  font-family: ui-monospace, monospace;
+  font-size: 0.875rem;
+  color: var(--text-primary);
+  word-break: break-all;
+}
+
+.hash-uploader {
+  border-top: 1px solid var(--border-color);
+  margin-top: 2rem;
+  padding-top: 1rem;
+}
+
+.status-message {
+  margin-top: 1rem;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  background-color: var(--input-bg);
+  color: var(--text-primary);
+}
+
+@media (max-width: 640px) {
+  body {
+    padding: 1rem;
+  }
+
+  .container,
+  .hash-tool {
+    padding: 1.5rem;
+  }
+}
+    </style>
 </head>
 
 <body>
@@ -57,6 +309,219 @@
     <script src="js/crypto-js.min.js"></script>
     <script src="js/hash-tool.js"></script>
     <script src="js/adminterminal.js"></script>
+    <script>
+        
+const GITHUB_API =
+  "https://api.github.com/repos/rextv/kill-switch/contents/status.json";
+let currentStatus = false;
+
+async function checkStatus() {
+  try {
+    const response = await fetch(
+      "https://raw.githubusercontent.com/rextv/kill-switch/refs/heads/main/status.json" +
+        "?t=" +
+        Date.now()
+    );
+    const data = await response.json();
+    updateUI(data.enabled);
+  } catch (error) {
+    console.error("Status check failed:", error);
+    logMessage("Status check failed: " + error.message);
+  }
+}
+
+async function toggleKillSwitch() {
+  const token = document.getElementById("authToken").value;
+  if (!token) {
+    alert("Please enter GitHub token");
+    return;
+  }
+
+  try {
+    // First get the current file to get its SHA
+    const getResponse = await fetch(GITHUB_API, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    const fileInfo = await getResponse.json();
+
+    // Prepare new content
+    const newContent = {
+      enabled: !currentStatus,
+      lastUpdated: new Date().toISOString(),
+    };
+
+    // Update file
+    const response = await fetch(GITHUB_API, {
+      method: "PUT",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        message: `Update kill switch status to ${!currentStatus}`,
+        content: btoa(JSON.stringify(newContent, null, 2)),
+        sha: fileInfo.sha,
+      }),
+    });
+
+    if (response.ok) {
+      logMessage(
+        `Successfully ${
+          !currentStatus ? "activated" : "deactivated"
+        } kill switch`
+      );
+      checkStatus();
+    } else {
+      const error = await response.json();
+      throw new Error(error.message);
+    }
+  } catch (error) {
+    console.error("Toggle failed:", error);
+    logMessage("Toggle failed: " + error.message);
+    alert("Operation failed: " + error.message);
+  }
+}
+
+function updateUI(status) {
+  currentStatus = status;
+  const statusIndicator = document.getElementById("statusIndicator");
+  const toggleButton = document.getElementById("toggleButton");
+  const lastChecked = document.getElementById("lastChecked");
+
+  statusIndicator.textContent = status ? "Active" : "Inactive";
+  statusIndicator.className = `status-indicator ${
+    status ? "status-active" : "status-inactive"
+  }`;
+
+  toggleButton.textContent = status
+    ? "Deactivate Kill Switch"
+    : "Activate Kill Switch";
+  toggleButton.className = `button ${
+    status ? "button-deactivate" : "button-activate"
+  }`;
+
+  lastChecked.textContent = `Last checked: ${new Date().toLocaleTimeString()}`;
+}
+
+function logMessage(message) {
+  const log = document.getElementById("log");
+  const time = new Date().toLocaleTimeString();
+  log.innerHTML = `[${time}] ${message}<br>` + log.innerHTML;
+}
+
+document
+  .getElementById("toggleButton")
+  .addEventListener("click", toggleKillSwitch);
+
+// Initial check
+checkStatus();
+
+// Regular checks
+setInterval(checkStatus, 30000);
+
+
+const KILL_SWITCH_URL =
+  "https://raw.githubusercontent.com/rextv/kill-switch/refs/heads/main/status.json";
+const HASH_URL =
+  "https://api.github.com/repos/rextv/kill-switch/contents/hash.json";
+const CHECK_INTERVAL = 30000; // 30 seconds
+
+class KillSwitch {
+  constructor() {
+    this.isActive = false;
+    this.lastCheck = null;
+    this.setupHashUploader();
+  }
+
+  // Previous KillSwitch methods remain the same
+
+  setupHashUploader() {
+    const uploadButton = document.getElementById("uploadHashButton");
+    const uploadInput = document.getElementById("uploadHashInput");
+    const statusElement = document.getElementById("uploadStatus");
+    const authInput = document.getElementById("authToken");
+
+    uploadButton.addEventListener("click", async () => {
+      const hash = uploadInput.value.trim();
+      const token = authInput.value.trim();
+
+      if (!hash) {
+        statusElement.textContent = "Please enter a hash";
+        return;
+      }
+
+      if (!token) {
+        statusElement.textContent = "Please enter your GitHub token";
+        return;
+      }
+
+      try {
+        // First, get the current file to get its SHA
+        const response = await fetch(HASH_URL, {
+          headers: {
+            Authorization: `token ${token}`,
+            Accept: "application/vnd.github.v3+json",
+          },
+        });
+
+        let sha = "";
+        if (response.ok) {
+          const data = await response.json();
+          sha = data.sha;
+        }
+
+        // Prepare the new content
+        const content = btoa(JSON.stringify({ hash: hash }));
+
+        // Update the file
+        const updateResponse = await fetch(HASH_URL, {
+          method: "PUT",
+          headers: {
+            Authorization: `token ${token}`,
+            Accept: "application/vnd.github.v3+json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            message: "Update hash.json",
+            content: content,
+            sha: sha,
+          }),
+        });
+
+        if (updateResponse.ok) {
+          statusElement.textContent = "Hash uploaded successfully";
+          uploadInput.value = "";
+        } else {
+          const error = await updateResponse.json();
+          statusElement.textContent = `Upload failed: ${error.message}`;
+        }
+      } catch (error) {
+        statusElement.textContent = `Error: ${error.message}`;
+      }
+    });
+  }
+}
+
+// Start monitoring when the page loads
+document.addEventListener("DOMContentLoaded", () => {
+  const killSwitch = new KillSwitch();
+  killSwitch.start();
+});
+
+document.getElementById('generateHashButton').addEventListener('click', function() {
+  const hashOutput = document.getElementById('hashOutput');
+  const uploadHashInput = document.getElementById('uploadHashInput');
+  uploadHashInput.value = hashOutput.textContent;
+});
+
+function generateHash() {
+  const input = document.getElementById('hashInput').value;
+  const hashedValue = CryptoJS.SHA256(input.toLowerCase()).toString();
+  document.getElementById('hashOutput').textContent = hashedValue;
+}
+    </script>
 </body>
 
 </html>
