@@ -1,527 +1,899 @@
-
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>System Control Panel</title>
-    <link rel="stylesheet" href="/css/admin.css">
     <style>
-        
-:root {
-  --primary-color: #60a5fa;
-  --danger-color: #ef4444;
-  --success-color: #22c55e;
-  --bg-color: #0f172a;
-  --card-bg: #1e293b;
-  --text-primary: #e2e8f0;
-  --text-secondary: #94a3b8;
-  --border-color: #334155;
-  --input-bg: #0f172a;
-  --hover-color: #2563eb;
-}
+      @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
 
-body {
-  font-family: system-ui, -apple-system, sans-serif;
-  background-color: var(--bg-color);
-  margin: 0;
-  padding: 2rem;
-  line-height: 1.5;
-  color: var(--text-primary);
-}
+      :root {
+        --primary-color: #60a5fa;
+        --danger-color: #ef4444;
+        --success-color: #22c55e;
+        --bg-color: #0f172a;
+        --card-bg: #1e293b;
+        --text-primary: #e2e8f0;
+        --text-secondary: #94a3b8;
+        --border-color: #334155;
+        --input-bg: #0f172a;
+        --hover-color: #2563eb;
+      }
 
-.container {
-  max-width: 800px;
-  margin: 0 auto;
-  background: var(--card-bg);
-  padding: 2rem;
-  border-radius: 1rem;
-  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.3), 0 2px 4px -2px rgb(0 0 0 / 0.3);
-}
+      body {
+        font-family: system-ui, -apple-system, sans-serif;
+        background-color: var(--bg-color);
+        margin: 0;
+        padding: 2rem;
+        line-height: 1.5;
+        color: var(--text-primary);
+      }
 
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 2rem;
-  padding-bottom: 1rem;
-  border-bottom: 1px solid var(--border-color);
-}
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        background: var(--card-bg);
+        padding: 2rem;
+        border-radius: 1rem;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.3),
+          0 2px 4px -2px rgb(0 0 0 / 0.3);
+      }
 
-.header h1 {
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: var(--text-primary);
-  margin: 0;
-}
+      .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid var(--border-color);
+      }
 
-#lastChecked {
-  color: var(--text-secondary);
-  font-size: 0.875rem;
-}
+      .header h1 {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: var(--text-primary);
+        margin: 0;
+      }
 
-.auth-section {
-  margin-bottom: 2rem;
-}
+      #lastChecked {
+        color: var(--text-secondary);
+        font-size: 0.875rem;
+      }
 
-.auth-input {
-  width: calc(100% - 2rem);
-  padding: 0.75rem 1rem;
-  border: 1px solid var(--border-color);
-  border-radius: 0.5rem;
-  font-size: 0.875rem;
-  transition: all 0.2s;
-  background-color: var(--input-bg);
-  color: var(--text-primary);
-}
+      .auth-section {
+        margin-bottom: 2rem;
+      }
 
-.auth-input:focus {
-  outline: none;
-  border-color: var(--primary-color);
-  box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.1);
-}
+      .auth-input {
+        width: calc(100% - 2rem);
+        padding: 0.75rem 1rem;
+        border: 1px solid var(--border-color);
+        border-radius: 0.5rem;
+        font-size: 0.875rem;
+        transition: all 0.2s;
+        background-color: var(--input-bg);
+        color: var(--text-primary);
+      }
 
-.status {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin-bottom: 2rem;
-  padding: 1rem;
-  background: var(--input-bg);
-  border-radius: 0.5rem;
-}
+      .auth-input:focus {
+        outline: none;
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.1);
+      }
 
-.status-indicator {
-  padding: 0.5rem 1rem;
-  border-radius: 9999px;
-  font-weight: 500;
-  font-size: 0.875rem;
-}
+      .status {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 2rem;
+        padding: 1rem;
+        background: var(--input-bg);
+        border-radius: 0.5rem;
+      }
 
-.status-active {
-  background-color: rgba(239, 68, 68, 0.2);
-  color: #fca5a5;
-}
+      .status-indicator {
+        padding: 0.5rem 1rem;
+        border-radius: 9999px;
+        font-weight: 500;
+        font-size: 0.875rem;
+      }
 
-.status-inactive {
-  background-color: rgba(34, 197, 94, 0.2);
-  color: #86efac;
-}
+      .status-active {
+        background-color: rgba(239, 68, 68, 0.2);
+        color: #fca5a5;
+      }
 
-.button {
-  padding: 0.75rem 1.5rem;
-  border: none;
-  border-radius: 0.5rem;
-  cursor: pointer;
-  font-size: 0.875rem;
-  font-weight: 500;
-  transition: all 0.2s;
-}
+      .status-inactive {
+        background-color: rgba(34, 197, 94, 0.2);
+        color: #86efac;
+      }
 
-.button-activate {
-  background-color: var(--danger-color);
-  color: white;
-}
+      .button {
+        padding: 0.75rem 1.5rem;
+        border: none;
+        border-radius: 0.5rem;
+        cursor: pointer;
+        font-size: 0.875rem;
+        font-weight: 500;
+        transition: all 0.2s;
+      }
 
-.button-deactivate {
-  background-color: var(--success-color);
-  color: white;
-}
+      .button-activate {
+        background-color: var(--danger-color);
+        color: white;
+      }
 
-.button:hover {
-  transform: translateY(-1px);
-  filter: brightness(110%);
-}
+      .button-deactivate {
+        background-color: var(--success-color);
+        color: white;
+      }
 
-.button:active {
-  transform: translateY(0);
-}
+      .button:hover {
+        transform: translateY(-1px);
+        filter: brightness(110%);
+      }
 
-.button:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
+      .button:active {
+        transform: translateY(0);
+      }
 
-.log {
-  margin-top: 2rem;
-  padding: 1rem;
-  background: var(--input-bg);
-  border-radius: 0.5rem;
-  font-family: ui-monospace, monospace;
-  font-size: 0.875rem;
-  color: var(--text-primary);
-}
+      .button:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
 
-.hash-tool {
-  max-width: 800px;
-  margin: 2rem auto 0;
-  background: var(--card-bg);
-  padding: 2rem;
-  border-radius: 1rem;
-  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.3), 0 2px 4px -2px rgb(0 0 0 / 0.3);
-}
+      .log {
+        margin-top: 2rem;
+        padding: 1rem;
+        background: var(--input-bg);
+        border-radius: 0.5rem;
+        font-family: ui-monospace, monospace;
+        font-size: 0.875rem;
+        color: var(--text-primary);
+      }
 
-.hash-tool h1, .hash-tool h2 {
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: var(--text-primary);
-  margin: 0 0 1.5rem;
-}
+      .hash-tool {
+        max-width: 800px;
+        margin: 2rem auto 0;
+        background: var(--card-bg);
+        padding: 2rem;
+        border-radius: 1rem;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.3),
+          0 2px 4px -2px rgb(0 0 0 / 0.3);
+      }
 
-.hash-tool h2 {
-  font-size: 1.25rem;
-  margin-top: 2rem;
-}
+      .hash-tool h1,
+      .hash-tool h2 {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: var(--text-primary);
+        margin: 0 0 1.5rem;
+      }
 
-.input-group {
-  margin-bottom: 1.5rem;
-}
+      .hash-tool h2 {
+        font-size: 1.25rem;
+        margin-top: 2rem;
+      }
 
-#hashInput, #uploadHashInput {
-  width: calc(100% - 2rem);
-  padding: 0.75rem 1rem;
-  border: 1px solid var(--border-color);
-  border-radius: 0.5rem;
-  font-size: 0.875rem;
-  transition: all 0.2s;
-  background-color: var(--input-bg);
-  color: var(--text-primary);
-}
+      .input-group {
+        margin-bottom: 1.5rem;
+      }
 
-#hashInput:focus, #uploadHashInput:focus {
-  outline: none;
-  border-color: var(--primary-color);
-  box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.1);
-}
+      #hashInput,
+      #uploadHashInput {
+        width: calc(100% - 2rem);
+        padding: 0.75rem 1rem;
+        border: 1px solid var(--border-color);
+        border-radius: 0.5rem;
+        font-size: 0.875rem;
+        transition: all 0.2s;
+        background-color: var(--input-bg);
+        color: var(--text-primary);
+      }
 
-.hash-tool button {
-  background-color: var(--primary-color);
-  color: white;
-  padding: 0.75rem 1.5rem;
-  border: none;
-  border-radius: 0.5rem;
-  cursor: pointer;
-  font-size: 0.875rem;
-  font-weight: 500;
-  transition: all 0.2s;
-}
+      #hashInput:focus,
+      #uploadHashInput:focus {
+        outline: none;
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.1);
+      }
 
-.hash-tool button:hover {
-  background-color: var(--hover-color);
-  transform: translateY(-1px);
-}
+      .hash-tool button {
+        background-color: var(--primary-color);
+        color: white;
+        padding: 0.75rem 1.5rem;
+        border: none;
+        border-radius: 0.5rem;
+        cursor: pointer;
+        font-size: 0.875rem;
+        font-weight: 500;
+        transition: all 0.2s;
+      }
 
-.output-group {
-  margin-top: 1.5rem;
-}
+      .hash-tool button:hover {
+        background-color: var(--hover-color);
+        transform: translateY(-1px);
+      }
 
-.output-group label {
-  display: block;
-  margin-bottom: 0.5rem;
-  color: var(--text-secondary);
-  font-size: 0.875rem;
-}
+      .output-group {
+        margin-top: 1.5rem;
+      }
 
-.hash-output {
-  padding: 1rem;
-  background: var(--input-bg);
-  border-radius: 0.5rem;
-  font-family: ui-monospace, monospace;
-  font-size: 0.875rem;
-  color: var(--text-primary);
-  word-break: break-all;
-}
+      .output-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        color: var(--text-secondary);
+        font-size: 0.875rem;
+      }
 
-.hash-uploader {
-  border-top: 1px solid var(--border-color);
-  margin-top: 2rem;
-  padding-top: 1rem;
-}
+      .hash-output {
+        padding: 1rem;
+        background: var(--input-bg);
+        border-radius: 0.5rem;
+        font-family: ui-monospace, monospace;
+        font-size: 0.875rem;
+        color: var(--text-primary);
+        word-break: break-all;
+      }
 
-.status-message {
-  margin-top: 1rem;
-  padding: 0.75rem;
-  border-radius: 0.5rem;
-  font-size: 0.875rem;
-  background-color: var(--input-bg);
-  color: var(--text-primary);
-}
+      .hash-uploader {
+        border-top: 1px solid var(--border-color);
+        margin-top: 2rem;
+        padding-top: 1rem;
+      }
 
-@media (max-width: 640px) {
-  body {
-    padding: 1rem;
-  }
+      .status-message {
+        margin-top: 1rem;
+        padding: 0.75rem;
+        border-radius: 0.5rem;
+        font-size: 0.875rem;
+        background-color: var(--input-bg);
+        color: var(--text-primary);
+      }
 
-  .container,
-  .hash-tool {
-    padding: 1.5rem;
-  }
-}
+      @media (max-width: 640px) {
+        body {
+          padding: 1rem;
+        }
+
+        .container,
+        .hash-tool {
+          padding: 1.5rem;
+        }
+      }
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
     <div class="container">
-        <div class="header">
-            <h1>Kill Switch</h1>
-            <div id="lastChecked"></div>
+      <div class="header">
+        <h1>Kill Switch</h1>
+        <div id="lastChecked"></div>
+      </div>
+
+      <div class="auth-section">
+        <input
+          type="password"
+          id="authToken"
+          class="auth-input"
+          placeholder="Enter GitHub token"
+        />
+      </div>
+
+      <div class="status">
+        <div>Current Status:</div>
+        <div id="statusIndicator" class="status-indicator status-inactive">
+          Checking...
         </div>
+      </div>
 
-        <div class="auth-section">
-            <input type="password" id="authToken" class="auth-input" placeholder="Enter GitHub token">
-        </div>
+      <button id="toggleButton" class="button button-activate">
+        Activate Kill Switch
+      </button>
 
-        <div class="status">
-            <div>Current Status:</div>
-            <div id="statusIndicator" class="status-indicator status-inactive">Checking...</div>
-        </div>
-
-        <button id="toggleButton" class="button button-activate">Activate Kill Switch</button>
-
-        <div id="log" class="log"></div>
+      <div id="log" class="log"></div>
     </div>
 
     <div class="hash-tool">
-        <h1>Hash Tool</h1>
+      <h1>Hash Tool</h1>
 
+      <div class="input-group">
+        <input type="text" id="hashInput" placeholder="Input Password" />
+      </div>
+
+      <button id="generateHashButton" onclick="generateHash()">
+        Generate Hash
+      </button>
+
+      <div class="output-group">
+        <label>SHA-256 Hash:</label>
+        <div id="hashOutput" class="hash-output"></div>
+      </div>
+
+      <div class="hash-uploader">
+        <h2>Password Hash Uploader</h2>
         <div class="input-group">
-            <input type="text" id="hashInput" placeholder="Input Password">
+          <input
+            type="text"
+            id="uploadHashInput"
+            placeholder="Enter hash to upload"
+          />
         </div>
-
-        <button id="generateHashButton" onclick="generateHash()">Generate Hash</button>
-
-        <div class="output-group">
-            <label>SHA-256 Hash:</label>
-            <div id="hashOutput" class="hash-output"></div>
-        </div>
-
-        <div class="hash-uploader">
-            <h2>Password Hash Uploader</h2>
-            <div class="input-group">
-                <input type="text" id="uploadHashInput" placeholder="Enter hash to upload">
-            </div>
-            <button id="uploadHashButton" class="button">Upload Hash</button>
-            <div id="uploadStatus" class="status-message"></div>
-        </div>
+        <button id="uploadHashButton" class="button">Upload Hash</button>
+        <div id="uploadStatus" class="status-message"></div>
+      </div>
     </div>
 
-    <script src="js/crypto-js.min.js"></script>
-    <script src="js/hash-tool.js"></script>
-    <script src="js/adminterminal.js"></script>
     <script>
-        
-const GITHUB_API =
-  "https://api.github.com/repos/rextv/kill-switch/contents/status.json";
-let currentStatus = false;
-
-async function checkStatus() {
-  try {
-    const response = await fetch(
-      "https://raw.githubusercontent.com/rextv/kill-switch/refs/heads/main/status.json" +
-        "?t=" +
-        Date.now()
-    );
-    const data = await response.json();
-    updateUI(data.enabled);
-  } catch (error) {
-    console.error("Status check failed:", error);
-    logMessage("Status check failed: " + error.message);
-  }
-}
-
-async function toggleKillSwitch() {
-  const token = document.getElementById("authToken").value;
-  if (!token) {
-    alert("Please enter GitHub token");
-    return;
-  }
-
-  try {
-    // First get the current file to get its SHA
-    const getResponse = await fetch(GITHUB_API, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    const fileInfo = await getResponse.json();
-
-    // Prepare new content
-    const newContent = {
-      enabled: !currentStatus,
-      lastUpdated: new Date().toISOString(),
-    };
-
-    // Update file
-    const response = await fetch(GITHUB_API, {
-      method: "PUT",
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        message: `Update kill switch status to ${!currentStatus}`,
-        content: btoa(JSON.stringify(newContent, null, 2)),
-        sha: fileInfo.sha,
-      }),
-    });
-
-    if (response.ok) {
-      logMessage(
-        `Successfully ${
-          !currentStatus ? "activated" : "deactivated"
-        } kill switch`
-      );
-      checkStatus();
-    } else {
-      const error = await response.json();
-      throw new Error(error.message);
-    }
-  } catch (error) {
-    console.error("Toggle failed:", error);
-    logMessage("Toggle failed: " + error.message);
-    alert("Operation failed: " + error.message);
-  }
-}
-
-function updateUI(status) {
-  currentStatus = status;
-  const statusIndicator = document.getElementById("statusIndicator");
-  const toggleButton = document.getElementById("toggleButton");
-  const lastChecked = document.getElementById("lastChecked");
-
-  statusIndicator.textContent = status ? "Active" : "Inactive";
-  statusIndicator.className = `status-indicator ${
-    status ? "status-active" : "status-inactive"
-  }`;
-
-  toggleButton.textContent = status
-    ? "Deactivate Kill Switch"
-    : "Activate Kill Switch";
-  toggleButton.className = `button ${
-    status ? "button-deactivate" : "button-activate"
-  }`;
-
-  lastChecked.textContent = `Last checked: ${new Date().toLocaleTimeString()}`;
-}
-
-function logMessage(message) {
-  const log = document.getElementById("log");
-  const time = new Date().toLocaleTimeString();
-  log.innerHTML = `[${time}] ${message}<br>` + log.innerHTML;
-}
-
-document
-  .getElementById("toggleButton")
-  .addEventListener("click", toggleKillSwitch);
-
-// Initial check
-checkStatus();
-
-// Regular checks
-setInterval(checkStatus, 30000);
-
-
-const KILL_SWITCH_URL =
-  "https://raw.githubusercontent.com/rextv/kill-switch/refs/heads/main/status.json";
-const HASH_URL =
-  "https://api.github.com/repos/rextv/kill-switch/contents/hash.json";
-const CHECK_INTERVAL = 30000; // 30 seconds
-
-class KillSwitch {
-  constructor() {
-    this.isActive = false;
-    this.lastCheck = null;
-    this.setupHashUploader();
-  }
-
-  // Previous KillSwitch methods remain the same
-
-  setupHashUploader() {
-    const uploadButton = document.getElementById("uploadHashButton");
-    const uploadInput = document.getElementById("uploadHashInput");
-    const statusElement = document.getElementById("uploadStatus");
-    const authInput = document.getElementById("authToken");
-
-    uploadButton.addEventListener("click", async () => {
-      const hash = uploadInput.value.trim();
-      const token = authInput.value.trim();
-
-      if (!hash) {
-        statusElement.textContent = "Please enter a hash";
-        return;
-      }
-
-      if (!token) {
-        statusElement.textContent = "Please enter your GitHub token";
-        return;
-      }
-
-      try {
-        // First, get the current file to get its SHA
-        const response = await fetch(HASH_URL, {
-          headers: {
-            Authorization: `token ${token}`,
-            Accept: "application/vnd.github.v3+json",
+      /*! CryptoJS v3.1.2 core-min.js
+       * code.google.com/p/crypto-js
+       * (c) 2009-2013 by Jeff Mott. All rights reserved.
+       * code.google.com/p/crypto-js/wiki/License
+       */
+      var CryptoJS =
+        CryptoJS ||
+        (function (h, r) {
+          var k = {},
+            l = (k.lib = {}),
+            n = function () {},
+            f = (l.Base = {
+              extend: function (a) {
+                n.prototype = this;
+                var b = new n();
+                a && b.mixIn(a);
+                b.hasOwnProperty("init") ||
+                  (b.init = function () {
+                    b.$super.init.apply(this, arguments);
+                  });
+                b.init.prototype = b;
+                b.$super = this;
+                return b;
+              },
+              create: function () {
+                var a = this.extend();
+                a.init.apply(a, arguments);
+                return a;
+              },
+              init: function () {},
+              mixIn: function (a) {
+                for (var b in a) a.hasOwnProperty(b) && (this[b] = a[b]);
+                a.hasOwnProperty("toString") && (this.toString = a.toString);
+              },
+              clone: function () {
+                return this.init.prototype.extend(this);
+              },
+            }),
+            j = (l.WordArray = f.extend({
+              init: function (a, b) {
+                a = this.words = a || [];
+                this.sigBytes = b != r ? b : 4 * a.length;
+              },
+              toString: function (a) {
+                return (a || s).stringify(this);
+              },
+              concat: function (a) {
+                var b = this.words,
+                  d = a.words,
+                  c = this.sigBytes;
+                a = a.sigBytes;
+                this.clamp();
+                if (c % 4)
+                  for (var e = 0; e < a; e++)
+                    b[(c + e) >>> 2] |=
+                      ((d[e >>> 2] >>> (24 - 8 * (e % 4))) & 255) <<
+                      (24 - 8 * ((c + e) % 4));
+                else if (65535 < d.length)
+                  for (e = 0; e < a; e += 4) b[(c + e) >>> 2] = d[e >>> 2];
+                else b.push.apply(b, d);
+                this.sigBytes += a;
+                return this;
+              },
+              clamp: function () {
+                var a = this.words,
+                  b = this.sigBytes;
+                a[b >>> 2] &= 4294967295 << (32 - 8 * (b % 4));
+                a.length = h.ceil(b / 4);
+              },
+              clone: function () {
+                var a = f.clone.call(this);
+                a.words = this.words.slice(0);
+                return a;
+              },
+              random: function (a) {
+                for (var b = [], d = 0; d < a; d += 4)
+                  b.push((4294967296 * h.random()) | 0);
+                return new j.init(b, a);
+              },
+            })),
+            m = (k.enc = {}),
+            s = (m.Hex = {
+              stringify: function (a) {
+                var b = a.words;
+                a = a.sigBytes;
+                for (var d = [], c = 0; c < a; c++) {
+                  var e = (b[c >>> 2] >>> (24 - 8 * (c % 4))) & 255;
+                  d.push((e >>> 4).toString(16));
+                  d.push((e & 15).toString(16));
+                }
+                return d.join("");
+              },
+              parse: function (a) {
+                for (var b = a.length, d = [], c = 0; c < b; c += 2)
+                  d[c >>> 3] |=
+                    parseInt(a.substr(c, 2), 16) << (24 - 4 * (c % 8));
+                return new j.init(d, b / 2);
+              },
+            }),
+            p = (m.Latin1 = {
+              stringify: function (a) {
+                var b = a.words;
+                a = a.sigBytes;
+                for (var d = [], c = 0; c < a; c++)
+                  d.push(
+                    String.fromCharCode(
+                      (b[c >>> 2] >>> (24 - 8 * (c % 4))) & 255
+                    )
+                  );
+                return d.join("");
+              },
+              parse: function (a) {
+                for (var b = a.length, d = [], c = 0; c < b; c++)
+                  d[c >>> 2] |= (a.charCodeAt(c) & 255) << (24 - 8 * (c % 4));
+                return new j.init(d, b);
+              },
+            }),
+            t = (m.Utf8 = {
+              stringify: function (a) {
+                try {
+                  return decodeURIComponent(escape(p.stringify(a)));
+                } catch (b) {
+                  throw Error("Malformed UTF-8 data");
+                }
+              },
+              parse: function (a) {
+                return p.parse(unescape(encodeURIComponent(a)));
+              },
+            }),
+            q = (l.BufferedBlockAlgorithm = f.extend({
+              reset: function () {
+                this._data = new j.init();
+                this._nDataBytes = 0;
+              },
+              _append: function (a) {
+                "string" == typeof a && (a = t.parse(a));
+                this._data.concat(a);
+                this._nDataBytes += a.sigBytes;
+              },
+              _process: function (a) {
+                var b = this._data,
+                  d = b.words,
+                  c = b.sigBytes,
+                  e = this.blockSize,
+                  f = c / (4 * e),
+                  f = a ? h.ceil(f) : h.max((f | 0) - this._minBufferSize, 0);
+                a = f * e;
+                c = h.min(4 * a, c);
+                if (a) {
+                  for (var g = 0; g < a; g += e) this._doProcessBlock(d, g);
+                  g = d.splice(0, a);
+                  b.sigBytes -= c;
+                }
+                return new j.init(g, c);
+              },
+              clone: function () {
+                var a = f.clone.call(this);
+                a._data = this._data.clone();
+                return a;
+              },
+              _minBufferSize: 0,
+            }));
+          l.Hasher = q.extend({
+            cfg: f.extend(),
+            init: function (a) {
+              this.cfg = this.cfg.extend(a);
+              this.reset();
+            },
+            reset: function () {
+              q.reset.call(this);
+              this._doReset();
+            },
+            update: function (a) {
+              this._append(a);
+              this._process();
+              return this;
+            },
+            finalize: function (a) {
+              a && this._append(a);
+              return this._doFinalize();
+            },
+            blockSize: 16,
+            _createHelper: function (a) {
+              return function (b, d) {
+                return new a.init(d).finalize(b);
+              };
+            },
+            _createHmacHelper: function (a) {
+              return function (b, d) {
+                return new u.HMAC.init(a, d).finalize(b);
+              };
+            },
+          });
+          var u = (k.algo = {});
+          return k;
+        })(Math);
+      (function () {
+        var h = CryptoJS,
+          j = h.lib.WordArray;
+        h.enc.Base64 = {
+          stringify: function (b) {
+            var e = b.words,
+              f = b.sigBytes,
+              c = this._map;
+            b.clamp();
+            b = [];
+            for (var a = 0; a < f; a += 3)
+              for (
+                var d =
+                    (((e[a >>> 2] >>> (24 - 8 * (a % 4))) & 255) << 16) |
+                    (((e[(a + 1) >>> 2] >>> (24 - 8 * ((a + 1) % 4))) & 255) <<
+                      8) |
+                    ((e[(a + 2) >>> 2] >>> (24 - 8 * ((a + 2) % 4))) & 255),
+                  g = 0;
+                4 > g && a + 0.75 * g < f;
+                g++
+              )
+                b.push(c.charAt((d >>> (6 * (3 - g))) & 63));
+            if ((e = c.charAt(64))) for (; b.length % 4; ) b.push(e);
+            return b.join("");
           },
-        });
+          parse: function (b) {
+            var e = b.length,
+              f = this._map,
+              c = f.charAt(64);
+            c && ((c = b.indexOf(c)), -1 != c && (e = c));
+            for (var c = [], a = 0, d = 0; d < e; d++)
+              if (d % 4) {
+                var g = f.indexOf(b.charAt(d - 1)) << (2 * (d % 4)),
+                  h = f.indexOf(b.charAt(d)) >>> (6 - 2 * (d % 4));
+                c[a >>> 2] |= (g | h) << (24 - 8 * (a % 4));
+                a++;
+              }
+            return j.create(c, a);
+          },
+          _map: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=",
+        };
+      })();
+      (function (h) {
+        for (
+          var s = CryptoJS,
+            f = s.lib,
+            g = f.WordArray,
+            q = f.Hasher,
+            f = s.algo,
+            m = [],
+            r = [],
+            l = function (a) {
+              return (4294967296 * (a - (a | 0))) | 0;
+            },
+            k = 2,
+            n = 0;
+          64 > n;
 
-        let sha = "";
-        if (response.ok) {
+        ) {
+          var j;
+          a: {
+            j = k;
+            for (var u = h.sqrt(j), t = 2; t <= u; t++)
+              if (!(j % t)) {
+                j = !1;
+                break a;
+              }
+            j = !0;
+          }
+          j &&
+            (8 > n && (m[n] = l(h.pow(k, 0.5))),
+            (r[n] = l(h.pow(k, 1 / 3))),
+            n++);
+          k++;
+        }
+        var a = [],
+          f = (f.SHA256 = q.extend({
+            _doReset: function () {
+              this._hash = new g.init(m.slice(0));
+            },
+            _doProcessBlock: function (c, d) {
+              for (
+                var b = this._hash.words,
+                  e = b[0],
+                  f = b[1],
+                  g = b[2],
+                  j = b[3],
+                  h = b[4],
+                  m = b[5],
+                  n = b[6],
+                  q = b[7],
+                  p = 0;
+                64 > p;
+                p++
+              ) {
+                if (16 > p) a[p] = c[d + p] | 0;
+                else {
+                  var k = a[p - 15],
+                    l = a[p - 2];
+                  a[p] =
+                    (((k << 25) | (k >>> 7)) ^
+                      ((k << 14) | (k >>> 18)) ^
+                      (k >>> 3)) +
+                    a[p - 7] +
+                    (((l << 15) | (l >>> 17)) ^
+                      ((l << 13) | (l >>> 19)) ^
+                      (l >>> 10)) +
+                    a[p - 16];
+                }
+                k =
+                  q +
+                  (((h << 26) | (h >>> 6)) ^
+                    ((h << 21) | (h >>> 11)) ^
+                    ((h << 7) | (h >>> 25))) +
+                  ((h & m) ^ (~h & n)) +
+                  r[p] +
+                  a[p];
+                l =
+                  (((e << 30) | (e >>> 2)) ^
+                    ((e << 19) | (e >>> 13)) ^
+                    ((e << 10) | (e >>> 22))) +
+                  ((e & f) ^ (e & g) ^ (f & g));
+                q = n;
+                n = m;
+                m = h;
+                h = (j + k) | 0;
+                j = g;
+                g = f;
+                f = e;
+                e = (k + l) | 0;
+              }
+              b[0] = (b[0] + e) | 0;
+              b[1] = (b[1] + f) | 0;
+              b[2] = (b[2] + g) | 0;
+              b[3] = (b[3] + j) | 0;
+              b[4] = (b[4] + h) | 0;
+              b[5] = (b[5] + m) | 0;
+              b[6] = (b[6] + n) | 0;
+              b[7] = (b[7] + q) | 0;
+            },
+            _doFinalize: function () {
+              var a = this._data,
+                d = a.words,
+                b = 8 * this._nDataBytes,
+                e = 8 * a.sigBytes;
+              d[e >>> 5] |= 128 << (24 - (e % 32));
+              d[(((e + 64) >>> 9) << 4) + 14] = h.floor(b / 4294967296);
+              d[(((e + 64) >>> 9) << 4) + 15] = b;
+              a.sigBytes = 4 * d.length;
+              this._process();
+              return this._hash;
+            },
+            clone: function () {
+              var a = q.clone.call(this);
+              a._hash = this._hash.clone();
+              return a;
+            },
+          }));
+        s.SHA256 = q._createHelper(f);
+        s.HmacSHA256 = q._createHmacHelper(f);
+      })(Math);
+
+      const GITHUB_API =
+        "https://api.github.com/repos/rextv/kill-switch/contents/status.json";
+      let currentStatus = false;
+
+      async function checkStatus() {
+        try {
+          const response = await fetch(
+            "https://raw.githubusercontent.com/rextv/kill-switch/refs/heads/main/status.json" +
+              "?t=" +
+              Date.now()
+          );
           const data = await response.json();
-          sha = data.sha;
+          updateUI(data.enabled);
+        } catch (error) {
+          console.error("Status check failed:", error);
+          logMessage("Status check failed: " + error.message);
+        }
+      }
+
+      async function toggleKillSwitch() {
+        const token = document.getElementById("authToken").value;
+        if (!token) {
+          alert("Please enter GitHub token");
+          return;
         }
 
-        // Prepare the new content
-        const content = btoa(JSON.stringify({ hash: hash }));
+        try {
+          // First get the current file to get its SHA
+          const getResponse = await fetch(GITHUB_API, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+          const fileInfo = await getResponse.json();
 
-        // Update the file
-        const updateResponse = await fetch(HASH_URL, {
-          method: "PUT",
-          headers: {
-            Authorization: `token ${token}`,
-            Accept: "application/vnd.github.v3+json",
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            message: "Update hash.json",
-            content: content,
-            sha: sha,
-          }),
+          // Prepare new content
+          const newContent = {
+            enabled: !currentStatus,
+            lastUpdated: new Date().toISOString(),
+          };
+
+          // Update file
+          const response = await fetch(GITHUB_API, {
+            method: "PUT",
+            headers: {
+              Authorization: `Bearer ${token}`,
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              message: `Update kill switch status to ${!currentStatus}`,
+              content: btoa(JSON.stringify(newContent, null, 2)),
+              sha: fileInfo.sha,
+            }),
+          });
+
+          if (response.ok) {
+            logMessage(
+              `Successfully ${
+                !currentStatus ? "activated" : "deactivated"
+              } kill switch`
+            );
+            checkStatus();
+          } else {
+            const error = await response.json();
+            throw new Error(error.message);
+          }
+        } catch (error) {
+          console.error("Toggle failed:", error);
+          logMessage("Toggle failed: " + error.message);
+          alert("Operation failed: " + error.message);
+        }
+      }
+
+      function updateUI(status) {
+        currentStatus = status;
+        const statusIndicator = document.getElementById("statusIndicator");
+        const toggleButton = document.getElementById("toggleButton");
+        const lastChecked = document.getElementById("lastChecked");
+
+        statusIndicator.textContent = status ? "Active" : "Inactive";
+        statusIndicator.className = `status-indicator ${
+          status ? "status-active" : "status-inactive"
+        }`;
+
+        toggleButton.textContent = status
+          ? "Deactivate Kill Switch"
+          : "Activate Kill Switch";
+        toggleButton.className = `button ${
+          status ? "button-deactivate" : "button-activate"
+        }`;
+
+        lastChecked.textContent = `Last checked: ${new Date().toLocaleTimeString()}`;
+      }
+
+      function logMessage(message) {
+        const log = document.getElementById("log");
+        const time = new Date().toLocaleTimeString();
+        log.innerHTML = `[${time}] ${message}<br>` + log.innerHTML;
+      }
+
+      document
+        .getElementById("toggleButton")
+        .addEventListener("click", toggleKillSwitch);
+
+      // Initial check
+      checkStatus();
+
+      // Regular checks
+      setInterval(checkStatus, 30000);
+
+      const KILL_SWITCH_URL =
+        "https://raw.githubusercontent.com/rextv/kill-switch/refs/heads/main/status.json";
+      const HASH_URL =
+        "https://api.github.com/repos/rextv/kill-switch/contents/hash.json";
+      const CHECK_INTERVAL = 30000; // 30 seconds
+
+      class KillSwitch {
+        constructor() {
+          this.isActive = false;
+          this.lastCheck = null;
+          this.setupHashUploader();
+        }
+
+        // Previous KillSwitch methods remain the same
+
+        setupHashUploader() {
+          const uploadButton = document.getElementById("uploadHashButton");
+          const uploadInput = document.getElementById("uploadHashInput");
+          const statusElement = document.getElementById("uploadStatus");
+          const authInput = document.getElementById("authToken");
+
+          uploadButton.addEventListener("click", async () => {
+            const hash = uploadInput.value.trim();
+            const token = authInput.value.trim();
+
+            if (!hash) {
+              statusElement.textContent = "Please enter a hash";
+              return;
+            }
+
+            if (!token) {
+              statusElement.textContent = "Please enter your GitHub token";
+              return;
+            }
+
+            try {
+              // First, get the current file to get its SHA
+              const response = await fetch(HASH_URL, {
+                headers: {
+                  Authorization: `token ${token}`,
+                  Accept: "application/vnd.github.v3+json",
+                },
+              });
+
+              let sha = "";
+              if (response.ok) {
+                const data = await response.json();
+                sha = data.sha;
+              }
+
+              // Prepare the new content
+              const content = btoa(JSON.stringify({ hash: hash }));
+
+              // Update the file
+              const updateResponse = await fetch(HASH_URL, {
+                method: "PUT",
+                headers: {
+                  Authorization: `token ${token}`,
+                  Accept: "application/vnd.github.v3+json",
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                  message: "Update hash.json",
+                  content: content,
+                  sha: sha,
+                }),
+              });
+
+              if (updateResponse.ok) {
+                statusElement.textContent = "Hash uploaded successfully";
+                uploadInput.value = "";
+              } else {
+                const error = await updateResponse.json();
+                statusElement.textContent = `Upload failed: ${error.message}`;
+              }
+            } catch (error) {
+              statusElement.textContent = `Error: ${error.message}`;
+            }
+          });
+        }
+      }
+
+      // Start monitoring when the page loads
+      document.addEventListener("DOMContentLoaded", () => {
+        const killSwitch = new KillSwitch();
+        killSwitch.start();
+      });
+
+      document
+        .getElementById("generateHashButton")
+        .addEventListener("click", function () {
+          const hashOutput = document.getElementById("hashOutput");
+          const uploadHashInput = document.getElementById("uploadHashInput");
+          uploadHashInput.value = hashOutput.textContent;
         });
 
-        if (updateResponse.ok) {
-          statusElement.textContent = "Hash uploaded successfully";
-          uploadInput.value = "";
-        } else {
-          const error = await updateResponse.json();
-          statusElement.textContent = `Upload failed: ${error.message}`;
-        }
-      } catch (error) {
-        statusElement.textContent = `Error: ${error.message}`;
+      function generateHash() {
+        const input = document.getElementById("hashInput").value;
+        const hashedValue = CryptoJS.SHA256(input.toLowerCase()).toString();
+        document.getElementById("hashOutput").textContent = hashedValue;
       }
-    });
-  }
-}
-
-// Start monitoring when the page loads
-document.addEventListener("DOMContentLoaded", () => {
-  const killSwitch = new KillSwitch();
-  killSwitch.start();
-});
-
-document.getElementById('generateHashButton').addEventListener('click', function() {
-  const hashOutput = document.getElementById('hashOutput');
-  const uploadHashInput = document.getElementById('uploadHashInput');
-  uploadHashInput.value = hashOutput.textContent;
-});
-
-function generateHash() {
-  const input = document.getElementById('hashInput').value;
-  const hashedValue = CryptoJS.SHA256(input.toLowerCase()).toString();
-  document.getElementById('hashOutput').textContent = hashedValue;
-}
     </script>
-</body>
-
+  </body>
 </html>
