@@ -8,7 +8,7 @@ version: 2
 build:
   os: ubuntu-24.04
   tools:
-    python: "3.10"  # Required by Read the Docs even if not used
+    python: "3.10"
   commands:
     - mkdir -p $READTHEDOCS_OUTPUT/html
-    - cp -r * $READTHEDOCS_OUTPUT/html
+    - rsync -av --exclude "$READTHEDOCS_OUTPUT" . $READTHEDOCS_OUTPUT/html
