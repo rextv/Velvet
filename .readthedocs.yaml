@@ -11,4 +11,4 @@ build:
     python: "3.10"
   commands:
     - mkdir -p $READTHEDOCS_OUTPUT/html
-    - rsync -av --exclude "$READTHEDOCS_OUTPUT" . $READTHEDOCS_OUTPUT/html
+    - find . -path $READTHEDOCS_OUTPUT -prune -o -exec cp -r {} $READTHEDOCS_OUTPUT/html \;
