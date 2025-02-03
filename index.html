@@ -1,45 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Velvet - Login</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-</head>
-
-<body>
-    <canvas id="particleCanvas"></canvas>
-
-    <div class="container">
-        <div class="login-box">
-            <div class="header">
-                <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none"
-                    stroke="#40E0D0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="4 17 10 11 4 5"></polyline>
-                    <line x1="12" y1="19" x2="20" y2="19"></line>
-                </svg>
-                <h1>Velvet Terminal</h1>
-                <h2>Login Page</h2>
-            </div>
-
-            <form id="loginForm" onsubmit="return handleLogin(event)">
-                <input type="password" id="password" placeholder="Enter Password" required>
-                <div id="error" class="error"></div>
-                <button type="submit">Login</button>
-            </form>
-        </div>
+    <link rel="stylesheet" href="css/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background: linear-gradient(135deg, #1a1a1a, #0a0a0a);
+        font-family: "Inter", sans-serif;
+        color: #ffffff;
+      }
+      .login-box {
+        background: rgba(40, 40, 40, 0.9);
+        padding: 2rem;
+        border-radius: 1rem;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        text-align: center;
+      }
+      h1 {
+        margin-bottom: 1rem;
+        color: #ffcc00;
+        text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
+      }
+      input {
+        width: 100%;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        border: 2px solid #ffcc00;
+        border-radius: 0.5rem;
+        background-color: #333;
+        color: #ffffff;
+        transition: border-color 0.3s;
+      }
+      input:focus {
+        border-color: #ffcc00;
+        outline: none;
+      }
+      button {
+        width: 100%;
+        padding: 1rem;
+        background-color: #ffcc00;
+        color: #333;
+        border: none;
+        border-radius: 0.5rem;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+      button:hover {
+        background-color: #e6b800;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="login-box">
+      <h1>Velvet Terminal</h1>
+      <form id="loginForm" onsubmit="return handleLogin(event)">
+        <input
+          type="password"
+          id="password"
+          placeholder="Enter Password"
+          required
+        />
+        <div id="error" class="error"></div>
+        <button type="submit">Login</button>
+      </form>
     </div>
-
     <script src="js/crypto-js.min.js"></script>
     <script src="js/auth.js"></script>
-    <script src="js/particles.js"></script>
     <script src="js/login.js"></script>
-    <!-- Google tag (gtag.js) -->
+    <script src="js/particles.js"></script>
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-BS965W8BWP"
+    ></script>
     <script src="/js/ganalytics.js"></script>
-    <script src="https://www.googletagmanager.com/gtag/js?id=G-BS965W8BWP" async></script>
-    <script src="../../js/admin.js"></script>
-</body>
-
+  </body>
 </html>

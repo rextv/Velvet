@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (distance < 100) {
             ctx.beginPath();
-            ctx.strokeStyle = `rgba(64, 224, 208, ${1 - distance / 100})`;
+            ctx.strokeStyle = `rgba(201, 16, 119, ${1 - distance / 100})`;
             ctx.lineWidth = 1;
             ctx.moveTo(p1.x, p1.y);
             ctx.lineTo(p2.x, p2.y);
@@ -55,9 +55,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         particles.forEach(particle => {
             particle.update();
-            
             ctx.beginPath();
-            ctx.fillStyle = '#40E0D0';
+            ctx.fillStyle = 'rgba(155, 27, 48, 1)'; 
             ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
             ctx.fill();
         });
